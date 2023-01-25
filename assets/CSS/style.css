@@ -6,7 +6,7 @@
 body {
     background-color: #f3f4fb;
     font-family: 'Inter', sans-serif;
-    font-family: 'Ubuntu', sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
 
 .header {
