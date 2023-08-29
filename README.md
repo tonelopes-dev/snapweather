@@ -26,9 +26,9 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 ## 💻 Projeto
 
 O snapwaether é um aplicação que usa uma API do [OpenWeather](https://openweathermap.org/api) para verificar o clima das cidades solicitadas.
-- [Visite o projeto online](https://tonelopes.github.io/snapweather/)
+- [Visite o projeto online](https://tonelopes-dev.github.io/snapweather/)
 
 
 ---
 
-Feito com ♥ por [Tone Lopes](https://tonelopes.github.io/portfolio/#home)
+Feito com ♥ por [Tone Lopes](https://tonelopes-dev.github.io/portfolio/#home)
