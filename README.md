@@ -11,7 +11,7 @@
 <br>
 
 <p align="center">
-  <img alt="projeto Tarefas" src="/assets/img/projeto-snapweather.jpg" width="100%">
+  <img alt="projeto Tarefas" src="https://tone-monte-portfolio-v3.s3.us-east-1.amazonaws.com/projects/1758298654169-ea02ab-banner-snapweather.jpg" width="100%">
 </p>
 
 ## 🚀 Tecnologias
