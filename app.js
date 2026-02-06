@@ -74,8 +74,11 @@ async function getCityWeather(cityName) {
 
   try {
     // 1. Get coordinates and state from Geocoding API
+    // Clean "praia de " for better matching
+    const cleanSearch = cityName.toLowerCase().replace("praia de ", "").trim();
+    
     const geoResponse = await fetch(
-      `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${api_key}`
+      `https://api.openweathermap.org/geo/1.0/direct?q=${cleanSearch}&limit=5&appid=${api_key}`
     );
     const geoData = await geoResponse.json();
 
@@ -84,7 +87,10 @@ async function getCityWeather(cityName) {
       return;
     }
 
-    const { lat, lon, name, state, country } = geoData[0];
+    // Bias search to BR (Brazil) results since the user is likely looking for local beaches
+    const bestMatch = geoData.find(g => g.country === "BR") || geoData[0];
+    const { lat, lon, name, state, country } = bestMatch;
+    
     const locationDisplay = state ? `${name}, ${state} - ${country}` : `${name}, ${country}`;
 
     // 2. Get weather data using coordinates
@@ -100,23 +106,23 @@ async function getCityWeather(cityName) {
   }
 }
 
-async function getSurfForecast(lat, lon, isRetry = false) {
+async function getSurfForecast(lat, lon, attempt = 0) {
   try {
-    // Current wave data + hourly sea level for tides
     const response = await fetch(
       `https://marine-api.open-meteo.com/v1/marine?latitude=${lat}&longitude=${lon}&current=wave_height,wave_period&hourly=sea_level_height_msl&forecast_days=1`
     );
     const data = await response.json();
 
-    // Check if we have valid marine data
     const hasData = data.current && data.current.wave_height !== null && data.current.wave_height !== undefined;
 
     if (hasData) {
         displaySurfForecast(data);
-    } else if (!isRetry) {
-        // If no data, try a point slightly offshore (0.05 deg ~ 5-6km)
-        // We try East and South to find water
-        getSurfForecast(lat - 0.05, lon + 0.05, true); 
+    } else if (attempt < 4) {
+        // Multi-directional search for coastal cities
+        // Attempt 1: East, 2: West, 3: North, 4: South
+        const offsets = [[0, 0.05], [0, -0.05], [0.05, 0], [-0.05, 0]];
+        const [latOff, lonOff] = offsets[attempt];
+        getSurfForecast(lat + latOff, lon + lonOff, attempt + 1); 
     } else {
         surfForecastSection.style.display = "none";
     }
