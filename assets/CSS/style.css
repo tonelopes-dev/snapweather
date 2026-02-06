@@ -124,39 +124,39 @@ main {
 }
 
 .current-temperature__weather-icon {
-  width: 150px;
-  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
-  transition: transform 0.5s ease;
+    width: 100px; /* Reduced from 150px */
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.08));
+    transition: transform 0.5s ease;
 }
 
 .current-temperature__weather-icon:hover {
-  transform: translateY(-10px);
+    transform: translateY(-5px) scale(1.05);
 }
 
 .current-temperature__description {
-  color: var(--secondary-color);
-  font-weight: 600;
-  font-size: 26px;
-  margin-top: 10px;
-  text-transform: capitalize;
+    color: var(--secondary-color);
+    font-weight: 600;
+    font-size: 22px; /* Reduced from 26px */
+    margin-top: 5px;
+    text-transform: capitalize;
 }
 
 .current-temperature__info-label {
-  margin-top: 20px;
-  color: var(--text-muted);
-  font-size: 14px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+    margin-top: 15px;
+    color: var(--text-muted);
+    font-size: 13px; /* Reduced from 14px */
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .current-temperature__current-temperature {
-  font-size: 64px;
-  font-weight: 700;
-  margin-top: 5px;
-  background: linear-gradient(180deg, var(--primary-color) 0%, #666 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+    font-size: 52px; /* Reduced from 64px */
+    font-weight: 800;
+    margin-top: 0px;
+    background: linear-gradient(180deg, var(--primary-color) 0%, #666 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* bottom-container (Improved Responsiveness) */
@@ -171,7 +171,7 @@ main {
     border-top: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 40px 40px 0 0;
     box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.08);
-    padding: 20px 10px 30px;
+    padding: 15px 10px 25px; /* More compact */
     z-index: 100;
 }
 
